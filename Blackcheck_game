@@ -1,0 +1,110 @@
+import random
+suits = ('Hearts','Diamonds','Spades','Club')
+ranks = ('two','three','four','five','six','seven','eight','nine','ten','joker','queen','king','ace')
+values = {'two':2,'three':3,'four':4,'five':5,'six':6,'seven':7,'eight':8,'nine':9,'ten':10,'joker':10,'queen':10,'king':10,'ace':11}
+
+class card:
+    def __init__(self,suit,rank):
+        self.suit = suit
+        self.rank = rank
+        self.value = values[rank]
+
+    def __str__(self):
+        return self.suit+" of "+self.rank+"\n"
+
+class deck:
+    def __init__(self):
+        self.deck_cards = []
+        for suit in suits:
+            for rank in ranks:
+                created_cards = card(suit,rank)
+                self.deck_cards.append(created_cards)
+                random.shuffle(self.deck_cards)
+
+    def distribute_op(self):
+        o = []
+        p = []
+        for i in range(4):
+            if i == 0 or i == 1:
+                o.append(self.deck_cards[i])
+            elif i == 2 or i == 3:
+                p.append(self.deck_cards[i])
+        return o,p
+
+class sum_check:
+    def __init__(self,a,b):
+        self.a = a
+        self.b = b
+        
+    def sumo(self):
+        e = 0
+        r = 0
+        for c in self.a:
+            e = e + c.value
+
+        for v in self.b:
+            r = r + v.value
+
+        return e,r
+
+def game():
+    print("\nWelcome to blackjack\n")
+    print("Game started and cards have been distrbuted\n")
+    c = deck()
+    comp,playr = c.distribute_op() # comp and playr got two cards each
+    print("Computer cards:\n",*comp)
+    print("Player cards:\n",*playr)
+    count = 0 
+    while 1:
+        print("\nPlayers turn")
+        n = int(input("Do you want to 1.Hit or 2.Stay \n:"))
+        if n==1:
+            random.shuffle(c.deck_cards)
+            playr.append(c.deck_cards[0])
+            print("player cards:",*playr)
+            i = sum_check(comp,playr)
+            k,l = i.sumo()
+        if n == 2:
+            print("Computers turn!")
+            break
+        elif l > 21:
+            #print("player cards:",*playr)
+            print("Computer wins ! Player loses")
+            count = count + 1
+            break
+        
+    if count == 0:
+        while 1:
+            print("Computer is hiting")
+            random.shuffle(c.deck_cards)
+            comp.append(c.deck_cards[0])
+            print("computer cards:\n",*comp)
+            i1 = sum_check(comp,playr)
+            k1,l1 = i1.sumo()
+            if k1 > 21:
+                print("Player wins ,Computer loss")
+                break
+            elif k1 > l1 and k < 21:
+                print("Computer wins , Player loss")
+                break
+
+game()
+while 1:
+    ap = int(input("Do you want to play again 1.yes 2.No:"))
+    if ap == 1:
+        game()
+    else:
+        print("Thank you")
+        break
+
+
+        
+    
+    
+
+
+    
+
+
+
+
