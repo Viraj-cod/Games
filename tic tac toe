@@ -1,0 +1,100 @@
+lst = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
+dm = ['1','2','3','4','5','6','7','8','9']
+print('|'+dm[0]+'|'+dm[1]+'|'+dm[2]+'|')
+print('|'+dm[3]+'|'+dm[4]+'|'+dm[5]+'|')
+print('|'+dm[6]+'|'+dm[7]+'|'+dm[8]+'|')
+print('\n')
+#print("x will move first\n")
+
+def check(lsd):
+    ls = tuple(lsd)
+    if ls[1] == 'x' and ls[2] == 'x' and ls[3] == 'x':
+        return True
+    elif ls[4] == 'x' and ls[5] == 'x' and ls[6] == 'x':
+        return True
+    elif ls[7] == 'x' and ls[8] == 'x' and ls[9] == 'x':
+        return True
+    elif ls[1] == 'x' and ls[4] == 'x' and ls[7] == 'x':
+        return True
+    elif ls[2] == 'x' and ls[5] == 'x' and ls[8] == 'x':
+        return True
+    elif ls[3] == 'x' and ls[6] == 'x' and ls[9] == 'x':
+        return True
+    elif ls[1] == 'x' and ls[5] == 'x' and ls[9] == 'x':
+        return True
+    elif ls[3] == 'x' and ls[5] == 'x' and ls[7] == 'x':
+        return True
+    elif ls[1] == 'o' and ls[2] == 'o' and ls[3] == 'o':
+        return False
+    elif ls[4] == 'o' and ls[5] == 'o' and ls[6] == 'o':
+        return False
+    elif ls[7] == 'o' and ls[8] == 'o' and ls[9] == 'o':
+        return False
+    elif ls[1] == 'o' and ls[4] == 'o' and ls[7] == 'o':
+        return False
+    elif ls[2] == 'o' and ls[5] == 'o' and ls[8] == 'o':
+        return False
+    elif ls[3] == 'o' and ls[6] == 'o' and ls[9] == 'o':
+        return False
+    elif ls[1] == 'o' and ls[5] == 'o' and ls[9] == 'o':
+        return False
+    elif ls[3] == 'o' and ls[5] == 'o' and ls[7] == 'o':
+        return False
+        
+    
+
+def display(ls):
+    print('                                      ','|'+ls[1]+'|'+ls[2]+'|'+ls[3]+'|')
+    print('                                      ','|'+ls[4]+'|'+ls[5]+'|'+ls[6]+'|')
+    print('                                      ','|'+ls[7]+'|'+ls[8]+'|'+ls[9]+'|')
+    
+def usr_inx(ls):
+    choice = 0
+    while choice not in [1,2,3,4,5,6,7,8,9]:
+            choice = int(input("\nX turn \nEnter the position in range[1-9]:"))
+    ls[choice] = 'x'
+    display(ls)
+
+def usr_ino(ls):
+    choice = 0
+    while choice not in [1,2,3,4,5,6,7,8,9]:
+        choice = int(input("\nO turn \nEnter the position in range[1-9]:"))
+    ls[choice] = 'o'
+    display(ls)
+            
+def wplay():
+    count = 1
+    while count <= 9:
+        if check(lst) == True:
+            print('\nCongratulations x won !')
+            break
+        elif check(lst) == False:
+            print('\nCongratulations o won!')
+            break
+        elif count in [1,3,5,7,9]:
+            usr_inx(lst)
+        elif count in [2,4,6,8]:
+            usr_ino(lst)
+        count = count + 1
+
+wplay()
+while 1:
+    x = input('Do you want to play it again (y or n):')
+    if x == 'y':
+        lst = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
+        wplay()
+    elif x == 'n':
+        print('Thank you')
+        break
+    else:
+        print('enter the valid input')
+
+        
+        
+
+
+
+
+    
+    
+        
