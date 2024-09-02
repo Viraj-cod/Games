@@ -1,0 +1,7 @@
+let arr = ['Bloomberg','Microsoft','Uber','Google','IBM','Netflix']
+arr.shift()
+console.log(arr);
+arr.splice(2,1,'ola')
+console.log(arr);
+arr.push('Amazon')
+console.log(arr);
