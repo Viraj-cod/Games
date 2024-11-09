@@ -1,0 +1,16 @@
+class Solution:
+    def getMaxArea(self,histogram):
+        res = []
+        for i in range(len(histogram)+1):
+            for j in range(len(histogram)+1):
+                temp = histogram[i:j]
+                if temp != []:
+                    res.append(temp)
+        add = [min(i)*len(i) for i in res]
+        return max(add)
+        
+if __name__ == '__main__':
+    inp = list(map(int,input("Enter the Height of the Bars:").split()))
+    obj = Solution()
+    result = obj.getMaxArea(inp)
+    print(result)
