@@ -1,0 +1,14 @@
+import random
+print('Guess the Number game between 1 to 10!')
+print('NOTE:Enter 0 to exit!')
+while True:
+    n = int(input("Enter nnumber:"))
+    if n == 0:
+        print('bye bye!')
+        break
+    if n == random.randint(1,11):
+        print('###############  Hurrey! You Won  ###################')
+    else:
+        print('############  Better Luck! You Lost!  ###############')
+        
+    
